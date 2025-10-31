@@ -1,4 +1,4 @@
-namespace C____Selenium
+namespace CSharpSelenium.Tests
 {
     public class Tests
     {

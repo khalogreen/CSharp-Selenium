@@ -11,32 +11,15 @@ using System.Threading.Tasks;
 
 namespace CSharpSelenium.Tests
 {
-    public class FirstTest
+    public class FirstTest : Base.BaseTest
     {
-        private IWebDriver driver;
         //attributes
-        [SetUp]
-        public void Setup()
+        [TestCase("https://google.com", "Google")]
+        [TestCase("https://bing.com", "Bing")]
+        public void FirstTetst(string url, string title)
         {
-            var options = new ChromeOptions();
-            options.AddArgument("--start-maximized");
-            driver = new ChromeDriver(options);
-            //options.AddArgument("--start-maximized");
-            //options.AddArgument("--disable-notifications");
-            //options.AddArgument("--disable-popup-blocking");
-            //options.AddArgument("--no-sandbox");
-            //options.AddArgument("--disable-dev-shm-usage");
-            //options.AddArgument("--headless=new");     // headless mode
-            //options.AddArgument("--window-size=1920,1080");
-        }
-        //attributes
-        //[TestCase("https://google.com", "Google")]
-        //[TestCase("https://bing.com", "Bing")]
-        [Test]
-        public void FirstTetst()
-        {
-            driver.Navigate().GoToUrl("https://google.com");
-            Assert.That(driver.Title.Contains("Google"));
+            driver.Navigate().GoToUrl(url);
+            Assert.That(driver.Title.Contains(title));
             //            MSTest NUnit аналог Пояснение
             //Assert.IsTrue(cond) Assert.That(cond, Is.True)  Проверка true
             //Assert.IsFalse(cond)    Assert.That(cond, Is.False) Проверка false
@@ -62,13 +45,6 @@ namespace CSharpSelenium.Tests
 //Marks[Test], [TestCase], [Ignore] Помечают тесты
 //Data[TestCase], [Values] Параметры тестов
 //Class - level[TestFixture]   Помечают тестовый класс
-        }
-        //attributes
-        [TearDown]
-        public void TearDown()
-        {
-            driver.Quit();
-            driver.Dispose();
         }
     }
 }

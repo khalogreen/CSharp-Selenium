@@ -7,8 +7,8 @@ namespace CSharpSelenium.Pages
     {
         protected readonly IWebDriver Driver;
         protected readonly WaitHelper Wait;
-        protected string url;
-        protected string title;
+        protected string Url;
+        protected string Title;
         protected BasePage(IWebDriver driver)
         {
             Driver = driver;
@@ -16,7 +16,7 @@ namespace CSharpSelenium.Pages
         }
         public virtual void GoTo()
         {
-            Driver.Navigate().GoToUrl(this.url);
+            Driver.Navigate().GoToUrl(this.Url);
         }
         protected IWebElement FindVisible(By locator) => Wait.Visible(locator);
         protected IWebElement FindClickable(By locator) => Wait.Clickable(locator);
@@ -34,7 +34,7 @@ namespace CSharpSelenium.Pages
         public void CheckTitle()
         {
             var currentTitle = GetTitle();
-            Assert.That(currentTitle == this.title, $"Title is wrong, it's {currentTitle} expected is {this.title}");
+            Assert.That(currentTitle == this.Title, $"Title is wrong, it's {currentTitle} expected is {this.Title}");
         }
     }
 }

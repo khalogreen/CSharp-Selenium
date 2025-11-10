@@ -4,7 +4,7 @@ namespace CSharpSelenium.Pages
 {
     public class HomePage : BasePage
     {
-        Dictionary<PageName, string> listOfPages = new Dictionary<PageName, string>()
+        Dictionary<PageName, string> ListOfPages = new Dictionary<PageName, string>()
         {
             { PageName.AbTesting, "A/B Testing" },
             { PageName.AddRemoveElements, "Add/Remove Elements" },
@@ -100,17 +100,17 @@ namespace CSharpSelenium.Pages
         }
         public HomePage(IWebDriver driver) : base(driver)
         {
-            this.url = "https://the-internet.herokuapp.com/";
+            this.Url = "https://the-internet.herokuapp.com/";
         }
-        public void ClickOnLink(string text)
-        {
-            Link_sel(text).Click();
-        }
-        public IWebElement Link_sel(string text)
-        {
-            By by = By.XPath($"//li[a][contains(string(), '{text}')]");
-            return driver.FindElement(by);
-        }
+        //public void ClickOnLink(string text)
+        //{
+        //    Link_sel(text).Click();
+        //}
+        //public IWebElement Link_sel(string text)
+        //{
+        //    By by = By.XPath($"//li[a][contains(string(), '{text}')]");
+        //    return driver.FindElement(by);
+        //}
         public void EnsureLinksArePresent()
         {
 

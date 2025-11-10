@@ -9,8 +9,8 @@ namespace CSharpSelenium.Tests
         [TestCase("https://bing.com", "Bing")]
         public void FirstTetst(string url, string title)
         {
-            driver.Navigate().GoToUrl(url);
-            Assert.That(driver.Title.Contains(title));
+            Driver.Navigate().GoToUrl(url);
+            Assert.That(Driver.Title.Contains(title));
             //            MSTest NUnit аналог Пояснение
             //Assert.IsTrue(cond) Assert.That(cond, Is.True)  Проверка true
             //Assert.IsFalse(cond)    Assert.That(cond, Is.False) Проверка false

@@ -1,4 +1,4 @@
-using CSharpSelenium.Core;
+using CSharpSelenium.Configs;
 using System.Linq;
 using System.Text.RegularExpressions;
 

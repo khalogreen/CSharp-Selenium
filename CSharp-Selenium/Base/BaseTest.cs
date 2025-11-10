@@ -1,30 +1,26 @@
-﻿using CSharpSelenium.Drivers;
+﻿using CSharpSelenium.Configs;
+using CSharpSelenium.Drivers;
+using Microsoft.Extensions.Configuration;
 using OpenQA.Selenium;
 
 namespace CSharpSelenium.Base
 {
     public class BaseTest
     {
-        protected IWebDriver driver;
-
+        protected IWebDriver Driver;
+        protected UiSettings UiConfig;
         [SetUp]
         public void SetUp()
         {
-            driver = DriverFactory.Create();
-            //options.AddArgument("--start-maximized");
-            //options.AddArgument("--disable-notifications");
-            //options.AddArgument("--disable-popup-blocking");
-            //options.AddArgument("--no-sandbox");
-            //options.AddArgument("--disable-dev-shm-usage");
-            //options.AddArgument("--headless=new");     // headless mode
-            //options.AddArgument("--window-size=1920,1080");
+            UiConfig = new ConfigReader().GetSection("Ui").Get<UiSettings>();
+            Driver = new DriverFactory(UiConfig).CreateDriver();
         }
 
         [TearDown]
         public void TearDown()
         {
-            driver.Quit();
-            driver.Dispose();
+            Driver.Quit();
+            Driver.Dispose();
         }
     }
 }

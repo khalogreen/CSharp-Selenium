@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpSelenium.Core
+namespace CSharpSelenium.Configs
 {
     public interface IConfigReader
     {
@@ -23,12 +23,16 @@ namespace CSharpSelenium.Core
             Environment = System.Environment.GetEnvironmentVariable("Test_ENV") ?? "Dev";
             _config = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{Environment}.json", optional: true, reloadOnChange: true)
+                .AddJsonFile("configs/appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"configs/appsettings.{Environment}.json", optional: true, reloadOnChange: true)
                 .AddEnvironmentVariables()
                 .Build();
+            Console.WriteLine($"[ConfigReader] Environment: {Environment}");
         }
-        
+        public IConfigurationSection GetSection(string sectionName)
+        {
+            return _config.GetSection(sectionName);
+        }
         public string Get(string key) => _config[key] ?? string.Empty;
         public int GetInt(string key, int defaultValue = 0) => int.TryParse(_config[key], out var result) ? result : defaultValue;
         public bool GetBool(string key, bool defaultValue = false) => bool.TryParse(_config[key], out var result) ? result : defaultValue;

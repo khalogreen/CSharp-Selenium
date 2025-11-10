@@ -1,3 +1,4 @@
+using CSharpSelenium.Core;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -47,6 +48,15 @@ namespace CSharpSelenium.Tests
 
             bool isTrue = uiPrices.SequenceEqual(sorted);
             Assert.Pass();
+        }
+        [Test]
+        public void Test5()
+        {
+            var config = new ConfigReader();
+            var browser = $"Browser: {config.Get("Browser")}";
+            var baseURL = $"BaseURL: {config.Get("BaseURL")}";
+            var timeout = $"Timeout: {config.GetInt("Timeout")}";
+            var headless = $"Headless: {config.GetBool("Headless")}";
         }
     }
 }

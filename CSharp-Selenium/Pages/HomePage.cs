@@ -113,7 +113,7 @@ namespace CSharpSelenium.Pages
         //}
         public void EnsureLinksArePresent()
         {
-
+            var Page = ListOfPages[PageName.StatusCodes];
         }
     }
 }
